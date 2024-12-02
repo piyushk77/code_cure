@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dementia Classification</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Dementia Classification</h1>
+        <form action="/predict" method="post" enctype="multipart/form-data" class="form-container">
+            <label for="file" class="form-label">Upload an MRI Image:</label>
+            <input type="file" name="file" id="file" class="form-input" required>
+            <button type="submit" class="submit-button">Predict</button>
+        </form>
+
+        {% if result %}
+            <div class="result-container">
+                <h2>{{ result }}</h2>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
+
