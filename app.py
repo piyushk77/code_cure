@@ -5,6 +5,21 @@ from PIL import Image
 import os
 import io
 
+os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
+
+# Set memory growth or limit memory
+physical_devices = tf.config.list_physical_devices('CPU')
+if physical_devices:
+    try:
+        for device in physical_devices:
+            tf.config.experimental.set_memory_growth(device, True)
+            # Or use a hard memory limit
+            # tf.config.experimental.set_virtual_device_configuration(
+            #     device,
+            #     [tf.config.experimental.VirtualDeviceConfiguration(memory_limit=400)])  # Memory limit in MiB
+    except Exception as e:
+        print(f"Error setting memory growth: {e}")
+
 # Initialize Flask app
 app = Flask(__name__)
 
